@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>You Made it {{user.username}}!</h1>
+
+<h2>{{user.first_name}} {{user.last_name}}</h2>
+
+<span>{{user.email}}</span>
+
+{% for feed in feedback %}
+<div>
+    <h3>{{feed.title}}</h3>
+    <p>{{feed.content}}</p>
+    <b>feedback given by {{feed.username}}</b>
+    <a href="/feedback/{{feed.id}}/update">| Edit |</a>
+    <a href="/feedback/{{feed.id}}/delete">X |</a>
+</div>
+{% endfor%}
+<br>
+<a href="/feedback/{{user.username}}/feedback/add">Add Feedback</a>
+<form action="/users/{{user.username}}/delete" method="POST"><button>Delete Account</button></form>
+
+
+{% endblock %}
